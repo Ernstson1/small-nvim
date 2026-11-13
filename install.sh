@@ -97,13 +97,13 @@ if $dotnet; then
   # dotnet-install.sh skips the download when this version is already installed
   curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel LTS --install-dir "$HOME/.dotnet"
   # shellcheck disable=SC2016 # $HOME/$PATH must expand when the rc file runs, not now
-  path_block='# >>> nvim-small >>>
+  path_block='# >>> small-nvim >>>
 export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
 export DOTNET_ROOT="$HOME/.dotnet"
-# <<< nvim-small <<<'
+# <<< small-nvim <<<'
   for rc in "$HOME/.bashrc" "$HOME/.zshrc"; do
     [[ -f "$rc" || "$rc" == "$HOME/.bashrc" ]] || continue
-    grep -q '>>> nvim-small >>>' "$rc" 2>/dev/null || printf '\n%s\n' "$path_block" >>"$rc"
+    grep -q '>>> small-nvim >>>' "$rc" 2>/dev/null || printf '\n%s\n' "$path_block" >>"$rc"
   done
   export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
   export DOTNET_ROOT="$HOME/.dotnet"
